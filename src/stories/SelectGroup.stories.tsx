@@ -16,7 +16,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const SelectHorizontal: Story = {
+export const SelectGroupHorizontal: Story = {
     args: {
         options: ["男性", "女性"],
         orientation: "horizontal",
@@ -24,7 +24,7 @@ export const SelectHorizontal: Story = {
     },
 };
 
-export const SelectVertical: Story = {
+export const SelectGroupVertical: Story = {
     args: {
         options: ["にきび", "しみ", "そばかす"],
         orientation: "vertical",
