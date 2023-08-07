@@ -17,6 +17,7 @@ export const ProgressSmall: Story = {
     args: {
         progress: 50,
         size: "small",
+        text: "基本情報",
     },
 };
 
@@ -24,6 +25,7 @@ export const ProgressMedium: Story = {
     args: {
         progress: 50,
         size: "medium",
+        text: "基本情報",
     },
 };
 
@@ -31,5 +33,6 @@ export const ProgressLarge: Story = {
     args: {
         progress: 50,
         size: "large",
+        text: "基本情報",
     },
 };
