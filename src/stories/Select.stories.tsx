@@ -1,30 +1,49 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Select } from "../components/Select";
 
-const meta = {
+const meta: Meta<typeof Select> = {
     title: "Select",
     component: Select,
     tags: ['autodocs'],
     argTypes: {
-        text: { control: "text" }, 
-        selected: { control: "boolean" },
-        onClick: { action: "clicked" },
+        options: { control: "array" },
+        orientation: { control: "select" },
+        type: { control: "select" },
     },
-} satisfies Meta<typeof Select>;
+}
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const SelectDefault: Story = {
+export const RadioSelectHorizontal: Story = {
     args: {
-        text: "男性",
-        selected: false,
+        options: ["男性", "女性"],
+        orientation: "horizontal",
+        type: "radio",
     },
 };
 
-export const SelectSelected: Story = {
+export const RadioSelectVertical: Story = {
     args: {
-        text: "女性",
-        selected: true,
+        options: ["男性", "女性"],
+        orientation: "vertical",
+        type: "radio",
     },
 };
+
+export const MultiSelectHorizontal: Story = {
+    args: {
+        options: ["にきび", "しみ", "そばかす"],
+        orientation: "horizontal",
+        type: "multi",
+    },
+};
+
+export const MultiSelectVertical: Story = {
+    args: {
+        options: ["にきび", "しみ", "そばかす"],
+        orientation: "vertical",
+        type: "multi",
+    },
+};
+

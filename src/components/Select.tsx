@@ -1,27 +1,91 @@
-import React from "react";
+import React, { useState } from "react";
+import { Option } from "./Option";
 
 type SelectProps = {
-    text?: string;
-    selected: boolean;
-    onClick: () => void;
+    options: string[];
+    type?: "radio" | "multi";
+    orientation?: "horizontal" | "vertical";
 };
 
 const selectClasses: Record<string, string> = {
-    default: "w-full bg-white hover:bg-red-100 text-red-500 hover:text-500 font-bold py-2 px-4 border-2 border-red-500 hover:border-red-500 rounded",
-    selected: "w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded",
+    horizontal: "flex w-full justify-between  space-x-2", 
+    vertical: "flex w-full flex-col space-y-2",
 };
 
-export const Select: React.FC<SelectProps> = ({
-    text = "",
-    selected,
-    onClick,
-}) => {
+type RadioSelectProps = SelectProps & {
+    type: "radio";
+    value: string;
+};
+
+const RadioSelect: React.FC<RadioSelectProps> = ({ 
+        options,
+        value,
+        orientation = "horizontal",
+    }) => {
+    const [selected, setSelected] = useState(value);
+
+    const onChange= (option: string) => {
+        setSelected(option);
+    };
+
     return (
-        <button
-            className={`${selectClasses[selected ? "selected" : "default"]} text-sm`}
-            onClick={onClick}
-        >
-            {text}
-        </button>
+        <div className={selectClasses[orientation]}>
+            {options.map((option) => (
+                <Option
+                    key={option}
+                    text={option}
+                    selected={option === selected}
+                    onClick={() => onChange(option)}
+                />
+            ))}
+        </div>
     );
+}
+
+type MultiSelectProps = SelectProps & {
+    type: "multi";
+    value: string[];
+};
+
+const MultiSelect: React.FC<MultiSelectProps> = ({
+        options,
+        value,
+        orientation = "horizontal",
+    }) => {
+        const [selected, setSelected] = useState(value);
+
+        const onChange = (option: string) => {
+            if (selected.includes(option)) {
+                setSelected(selected.filter((item) => item !== option));
+            } else {
+                setSelected([...selected, option]);
+            }
+        };
+
+        return (
+            <div className={selectClasses[orientation]}>
+                {options.map((option) => (
+                    <Option
+                        key={option}
+                        text={option}
+                        selected={selected.includes(option)}
+                        onClick={() => onChange(option)}
+                    />
+                ))}
+            </div>
+        );
+}
+
+export const Select: React.FC<SelectProps> = ({
+    options,
+    type = "radio",
+    orientation = "horizontal",
+}) => {
+    
+    if (type === "radio") {
+        return <RadioSelect type={type} options={options} orientation={orientation} value={options[0]} />;
+    } else {
+        return <MultiSelect type={type} options={options} orientation={orientation} value={[]} />;
+    }
+    
 }
