@@ -1,7 +1,7 @@
 import React from "react";
 
 type ProgressProps = {
-    progress: number;
+    value: number;
     size?: 'small' | 'medium' | 'large';
     text?: string;
 };
@@ -13,7 +13,7 @@ const progressClasses: Record<string, string> = {
 };
 
 export const Progress: React.FC<ProgressProps> = ({
-        progress,
+        value,
         size = "medium",
         text = "",
     }) => {
@@ -22,10 +22,10 @@ export const Progress: React.FC<ProgressProps> = ({
         <>
         {text && <p className={`flex items-center justify-center text-gray-500 pb-2 ${
             size === "small" ? "text-xs" : size === "medium" ? "text-sm" : "text-lg"
-        } font-semibold`}>{text}</p>}
+        } font-bold`}>{text}</p>}
         <div className="flex w-full items-center justify-center">
             <div className={`${progressClasses[size]} mr-2`}>
-                <div className="h-full bg-red-500 rounded-full" style={{ width: `${progress}%` }}></div>
+                <div className="h-full bg-red-500 rounded-full" style={{ width: `${value}%` }}></div>
             </div>
         </div>
         </>
