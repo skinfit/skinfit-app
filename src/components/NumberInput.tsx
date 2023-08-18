@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { NumberInputProps } from '../types/props';
 
 export const NumberInput = ({
@@ -27,10 +27,6 @@ export const NumberInput = ({
             setError("");
         }
     };
-
-    useEffect(() => {
-        setInputValueWithValidation(value);
-    }, [value]);
 
     const _onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const regex = /^[0-9]+$/;

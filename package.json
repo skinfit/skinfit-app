@@ -1,6 +1,6 @@
 {
-  "name": "skinfit-storybook",
-  "version": "0.1.1",
+  "name": "skinfit-app",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
