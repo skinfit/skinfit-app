@@ -1,48 +1,48 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../components/Icon';
 
-const meta: Meta<typeof Icon> = {
+const meta = {
     title: 'Icon',
     component: Icon,
     tags: ['autodocs'],
     argTypes: {
-        label: { control: 'select' },
-        type: { control: 'select' },
+        name: { control: 'select' },
+        variant: { control: 'select' },
         size: { control: 'select' },
     },
-}
+} satisfies Meta<typeof Icon>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const AddIcon: Story = {
     args: {
-        label: 'add',
-        type: 'outlined',
+        name: 'add',
+        variant: 'outline',
         size: 'medium',
     },
 };
 
 export const CencelIcon: Story = {
     args: {
-        label: 'cancel',
-        type: 'outlined',
+        name: 'cancel',
+        variant: 'outline',
         size: 'medium',
     },
 };
 
 export const EditIcon: Story = {
     args: {
-        label: 'edit',
-        type: 'outlined',
+        name: 'edit',
+        variant: 'outline',
         size: 'medium',
     },
 };
 
 export const SearchIcon: Story = {
     args: {
-        label: 'search',
-        type: 'outlined',
+        name: 'search',
+        variant: 'outline',
         size: 'medium',
     },
 };

@@ -2,12 +2,13 @@ import type { StorybookConfig } from "@storybook/nextjs";
 
 const config: StorybookConfig = {
   stories: [
-    // "../src/**/*.mdx", 
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
-  ],
+    "../src/**/*.mdx", 
+    "../src/stories/*.stories.@(js|jsx|mjs|ts|tsx)"
+],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
+    "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
   ],
   framework: {
@@ -17,9 +18,10 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
-  // staticDirs: [{ from: '../public', to: '/public' }],
   // https://github.com/storybookjs/storybook/issues/18557
-  core: {},
+  core: {
+    builder: "@storybook/builder-webpack5",
+  },
   webpackFinal: async config => {
     const imageRule = config.module?.rules?.find(rule => {
       const test = (rule as { test: RegExp }).test
