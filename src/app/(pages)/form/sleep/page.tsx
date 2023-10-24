@@ -11,12 +11,12 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export const FormSleep: React.FC<IFormSleep> = ({
+export default function FormSleep({
     prevPage = "symptom",
     nextPage = "confirm",
     title = "生活習慣",
     progress = 50,
-}) => {
+}: IFormSleep) {
 
     const router = useRouter();
 
@@ -114,5 +114,3 @@ export const FormSleep: React.FC<IFormSleep> = ({
         </main>         
     );
 };
-
-export default FormSleep;

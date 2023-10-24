@@ -5,15 +5,14 @@ import AnswersList from "@/features/form/components/AnswersList";
 import { IFormConfirm, IFormState } from "@/features/form/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { useSelector } from "react-redux";
 
-export const FormConfirm: React.FC<IFormConfirm> = ({
+export default function FormConfirm({
     prevPage = "sleep",
     nextPage = "result",
     title = "生活習慣",
     progress = 100,
-} ) => {
+}: IFormConfirm ) {
 
     const router = useRouter();
 
@@ -44,5 +43,3 @@ export const FormConfirm: React.FC<IFormConfirm> = ({
         </main> 
     );
 };
-
-export default FormConfirm;

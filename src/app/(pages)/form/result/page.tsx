@@ -1,16 +1,10 @@
 "use client"
 
-import { IFormResult, IFormState } from "@/features/form/types";
+import { IFormResult } from "@/features/form/types";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React from "react";
-import { useSelector } from "react-redux";
 
-export const FormResult: React.FC<IFormResult> = () => {
-
-    const router = useRouter();
-
-    const { answers } = useSelector((state: {form: IFormState}) => state.form);
+export default function FormResult({
+}: IFormResult) {
     
     return (
         <main className="flex min-h-screen flex-col items-center justify-start py-24 bg-white">
@@ -23,5 +17,3 @@ export const FormResult: React.FC<IFormResult> = () => {
         </main> 
     );
 };
-
-export default FormResult;

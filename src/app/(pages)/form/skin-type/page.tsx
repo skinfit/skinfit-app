@@ -11,12 +11,12 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export const FormSkinType: React.FC<IFormSkinType> = ({
+export default function FormSkinType({
     prevPage = "sex",
     nextPage = "symptom",
     title = "肌について",
     progress = 30,
-}) => {
+}: IFormSkinType) {
 
     const router = useRouter();
 
@@ -83,5 +83,3 @@ export const FormSkinType: React.FC<IFormSkinType> = ({
         </main>         
     );
 };
-
-export default FormSkinType;

@@ -20,9 +20,9 @@ interface IListSymptoms {
     symptoms?: string[];
 }
 
-const ListSymptoms: React.FC<IListSymptoms> = ({
+function ListSymptoms({
     symptoms = [],
-}) => {
+}: IListSymptoms) {
 
     if (symptoms === undefined || symptoms.length === 0) {
         return <p className="text-gray-400 text-xs font-bold text-center">選択された症状はありません</p>
@@ -45,12 +45,12 @@ const ListSymptoms: React.FC<IListSymptoms> = ({
     }
 };
 
-export const FormSymptom = ({
+export default function FormSymptom({
     prevPage = "skin-type",
     nextPage = "sleep",
     title = "肌について",
     progress = 40,
-}: IFormSymptom ) => {
+}: IFormSymptom ) {
 
     const router = useRouter();
 
@@ -181,5 +181,3 @@ export const FormSymptom = ({
         </main>         
     );
 };
-
-export default FormSymptom;

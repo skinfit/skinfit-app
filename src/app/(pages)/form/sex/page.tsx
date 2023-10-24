@@ -11,12 +11,12 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export const FormSex: React.FC<IFormSex> = ({
+export default function FormSex({
     prevPage = "age",
     nextPage = "skin-type",
     title = "基本情報",
     progress = 20,
-}) => {
+}: IFormSex) {
 
     const router = useRouter();
 
@@ -82,5 +82,3 @@ export const FormSex: React.FC<IFormSex> = ({
         </main>         
     );
 };
-
-export default FormSex;
