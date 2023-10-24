@@ -7,6 +7,7 @@ export interface ButtonProps {
     size?: "small" | "medium" | "large";
     onClick?: () => void;
     disabled?: boolean;
+    type?: "button" | "submit" | "reset";
 };
 
 // SVG Icon Component Props
@@ -14,6 +15,14 @@ export interface IconProps extends React.SVGProps<SVGSVGElement> {
     name: "add" | "cancel" | "edit" | "search";
     variant?: "fill" | "outline";
     size?: "small" | "medium" | "large";
+    color?: string;
+};
+
+// SVG Logo Component Props
+export interface LogoProps extends React.SVGProps<SVGSVGElement> {
+    name: "apple" | "google";
+    size?: "small" | "medium" | "large";
+    color?: string;
 };
 
 // Text Input Component Props
@@ -43,10 +52,11 @@ export interface ProgressProps {
 };
 
 // Option Component Props
-export interface OptionProps extends React.ComponentPropsWithoutRef<"button"> {
+export interface OptionProps {
     value: string;
     label?: string;
     selected?: boolean;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 // Single Select Component Props

@@ -1,0 +1,119 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+// ユーザー
+model User {
+    id        String          @id @default(cuid()) // ユーザーID
+    createdAt DateTime        @default(now()) // 登録日時
+    email     String          @unique // メールアドレス
+    name      String // 名前
+    reviews   ProductReview[]
+}
+
+// 化粧品の配合成分
+model Ingredient {
+    id          String              @id @default(cuid()) // 化粧品の配合成分ID
+    name        String // 学術名称
+    labels      String[] // 表示名称
+    description String // 説明
+    cas_id      String // CAS番号 化合物の一意の識別子
+    inci_names  String[] // INCI名　化粧品の成分を表示するための国際的な名称で複数名称がある場合もある
+    effects     IngredientEffect[] // 効能
+    products    ProductIngredient[] // 化粧品
+}
+
+// 化粧品の配合成分と効能の関連
+model IngredientEffect {
+    id           String     @id @default(cuid()) // 化粧品の配合成分ID
+    ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+    ingredientId String
+    effect       Effect     @relation(fields: [effectId], references: [id])
+    effectId     String
+}
+
+// 化粧品の効能
+model Effect {
+    id          String             @id @default(cuid()) // 化粧品の効能ID
+    labels      String[] // 表示名称
+    description String // 説明
+    ingredients IngredientEffect[] // 化粧品の配合成分
+}
+
+// 化粧品の情報
+model Product {
+    id          String              @id @default(cuid()) // 化粧品ID
+    name        String // 名称
+    description String // 説明
+    ingredients ProductIngredient[] // 化粧品の配合成分
+    categories  ProductCategory[] // 化粧品のカテゴリー
+    brands      ProductBrand[] // 化粧品のブランド
+    reviews     ProductReview[] // レビュー
+}
+
+// 化粧品の配合成分と化粧品の関連
+model ProductIngredient {
+    id           String     @id @default(cuid()) // 化粧品の配合成分ID
+    product      Product    @relation(fields: [productId], references: [id])
+    productId    String
+    ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+    ingredientId String
+}
+
+// 化粧品のカテゴリー
+model Category {
+    id       String            @id @default(cuid()) // 化粧品のカテゴリーID
+    name     String // 名称
+    products ProductCategory[] // 化粧品
+}
+
+// 化粧品のカテゴリーと化粧品の関連
+model ProductCategory {
+    id         String   @id @default(cuid()) // 化粧品のカテゴリーID
+    product    Product  @relation(fields: [productId], references: [id])
+    productId  String
+    category   Category @relation(fields: [categoryId], references: [id])
+    categoryId String
+}
+
+// 化粧品のブランド
+model Brand {
+    id       String         @id @default(cuid()) // 化粧品のブランドID
+    name     String // 名称
+    products ProductBrand[] // 化粧品
+}
+
+// 化粧品のブランドと化粧品の関連
+model ProductBrand {
+    id        String  @id @default(cuid()) // 化粧品のブランドID
+    product   Product @relation(fields: [productId], references: [id])
+    productId String
+    brand     Brand   @relation(fields: [brandId], references: [id])
+    brandId   String
+}
+
+// レビュー
+model ProductReview {
+    id        String   @id @default(cuid()) // レビューID
+    createdAt DateTime @default(now()) // 作成日時
+    updatedAt DateTime @updatedAt // 更新日時
+    user      User     @relation(fields: [userId], references: [id])
+    userId    String
+    product   Product  @relation(fields: [productId], references: [id])
+    productId String
+    title     String // タイトル
+    content   String // 内容
+    rating    Int // 評価
+}
+
+// 症状の情報
+model Symptom {
+    id      String @id @default(cuid()) // 症状ID
+    label   String // 表示名称
+    keyword String // キーワード
+}
