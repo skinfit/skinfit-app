@@ -8,15 +8,15 @@ import { setAnswer } from "@/features/form/stores/formSlice";
 import { IFormSleep, IFormState } from "@/features/form/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export const FormSleep = ({
+export const FormSleep: React.FC<IFormSleep> = ({
     prevPage = "symptom",
     nextPage = "confirm",
     title = "生活習慣",
     progress = 50,
-}: IFormSleep ) => {
+}) => {
 
     const router = useRouter();
 

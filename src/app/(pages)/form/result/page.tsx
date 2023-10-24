@@ -1,11 +1,12 @@
 "use client"
 
-import { IFormState } from "@/features/form/types";
+import { IFormResult, IFormState } from "@/features/form/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import React from "react";
 import { useSelector } from "react-redux";
 
-export const FormResult = () => {
+export const FormResult: React.FC<IFormResult> = () => {
 
     const router = useRouter();
 

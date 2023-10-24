@@ -48,3 +48,11 @@ export interface IFormSymptom extends IFormBase {
 // 睡眠時間フォームの型
 export interface IFormSleep extends IFormBase {
 };
+
+// 確認フォームの型
+export interface IFormConfirm extends IFormBase {
+};
+
+// 結果フォームの型
+export interface IFormResult {
+}

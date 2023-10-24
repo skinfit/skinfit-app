@@ -11,7 +11,7 @@ import { Symptom } from "@prisma/client";
 import { createTRPCProxyClient, httpBatchLink } from "@trpc/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 type TStatus = 'IDLE' | 'TYPING' | 'SEARCHING' | 'DONE';
@@ -20,9 +20,9 @@ interface IListSymptoms {
     symptoms?: string[];
 }
 
-const ListSymptoms = ({
+const ListSymptoms: React.FC<IListSymptoms> = ({
     symptoms = [],
-}: IListSymptoms) => {
+}) => {
 
     if (symptoms === undefined || symptoms.length === 0) {
         return <p className="text-gray-400 text-xs font-bold text-center">選択された症状はありません</p>

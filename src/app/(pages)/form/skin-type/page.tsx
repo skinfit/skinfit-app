@@ -8,15 +8,15 @@ import { setAnswer } from "@/features/form/stores/formSlice";
 import { IFormSkinType, IFormState } from "@/features/form/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export const FormSkinType = ({
+export const FormSkinType: React.FC<IFormSkinType> = ({
     prevPage = "sex",
     nextPage = "symptom",
     title = "肌について",
     progress = 30,
-}: IFormSkinType ) => {
+}) => {
 
     const router = useRouter();
 

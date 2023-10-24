@@ -7,17 +7,17 @@ import { setAnswer } from "@/features/form/stores/formSlice";
 import { IFormAge, IFormState } from "@/features/form/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export const FormAge = ({
+export const FormAge: React.FC<IFormAge> = ({
     prevPage = null,
     nextPage = "sex",
     title = "基本情報",
     progress = 10,
     min = 0,
     max = 100,
-}: IFormAge ) => {
+}) => {
 
     const router = useRouter();
 

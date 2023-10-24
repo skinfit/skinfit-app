@@ -8,15 +8,15 @@ import { setAnswer } from "@/features/form/stores/formSlice";
 import { IFormSex, IFormState } from "@/features/form/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export const FormSex = ({
+export const FormSex: React.FC<IFormSex> = ({
     prevPage = "age",
     nextPage = "skin-type",
     title = "基本情報",
     progress = 20,
-}: IFormSex ) => {
+}) => {
 
     const router = useRouter();
 

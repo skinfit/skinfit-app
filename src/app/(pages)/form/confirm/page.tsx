@@ -2,17 +2,18 @@
 
 import Button from "@/components/Button";
 import AnswersList from "@/features/form/components/AnswersList";
-import { IFormSleep, IFormState } from "@/features/form/types";
+import { IFormConfirm, IFormState } from "@/features/form/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import React from "react";
 import { useSelector } from "react-redux";
 
-export const FormConfirm = ({
+export const FormConfirm: React.FC<IFormConfirm> = ({
     prevPage = "sleep",
     nextPage = "result",
     title = "生活習慣",
     progress = 100,
-}: IFormSleep ) => {
+} ) => {
 
     const router = useRouter();
 
