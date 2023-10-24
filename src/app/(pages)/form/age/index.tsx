@@ -10,14 +10,14 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function FormAge({
+const FormAge: React.FC<IFormAge> = ({
     prevPage = null,
     nextPage = "sex",
     title = "基本情報",
     progress = 10,
     min = 0,
     max = 100,
-}: IFormAge ) {
+}) => {
 
     const router = useRouter();
 
@@ -106,3 +106,5 @@ export default function FormAge({
         </main>         
     );
 };
+
+export default FormAge;

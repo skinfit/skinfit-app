@@ -1,5 +1,5 @@
+import { Option } from "@/components/Select";
 import { Meta, StoryObj } from "@storybook/react";
-import { Option } from "../components/Option";
 
 const meta = {
     title: "Option",

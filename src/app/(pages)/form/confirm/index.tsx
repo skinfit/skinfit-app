@@ -7,12 +7,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
-export default function FormConfirm({
+const FormConfirm: React.FC<IFormConfirm> = ({
     prevPage = "sleep",
     nextPage = "result",
-    title = "生活習慣",
+    title = "",
     progress = 100,
-}: IFormConfirm ) {
+}) => {
 
     const router = useRouter();
 
@@ -43,3 +43,5 @@ export default function FormConfirm({
         </main> 
     );
 };
+
+export default FormConfirm;

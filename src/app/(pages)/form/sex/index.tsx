@@ -5,31 +5,35 @@ import { Progress } from "@/components/Progress";
 import { Option } from "@/components/Select";
 import AnswersList from "@/features/form/components/AnswersList";
 import { setAnswer } from "@/features/form/stores/formSlice";
-import { IFormSkinType, IFormState } from "@/features/form/types";
+import { IFormSex, IFormState } from "@/features/form/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function FormSkinType({
-    prevPage = "sex",
-    nextPage = "symptom",
-    title = "肌について",
-    progress = 30,
-}: IFormSkinType) {
+const FormSex: React.FC<IFormSex> = ({
+    prevPage = "age",
+    nextPage = "skin-type",
+    title = "基本情報",
+    progress = 20,
+}) => {
 
     const router = useRouter();
 
     const dispatch = useDispatch();
-    const { skinTypes } = useSelector((state: {form: IFormState}) => state.form.answers);
+    const { sex } = useSelector((state: {form: IFormState}) => state.form.answers);
+    
+    const [ inputValue, setInputValue ] = useState<string | null>(sex === undefined ? null : sex);
     const { answers } = useSelector((state: {form: IFormState}) => state.form);
-
-    const [ inputValues, setInputValues ] = useState<string[]>(skinTypes === undefined ? [] : skinTypes);
     
     const handleValueChange = (e: React.MouseEvent<HTMLButtonElement>) => {
         const value = e.currentTarget.value;
-        const newInputValues = inputValues.includes(value) ? inputValues.filter((v) => v !== value) : [...inputValues, value];
-        setInputValues(newInputValues);
+        if (value === inputValue) {
+            setInputValue(null);
+        }
+        else {
+            setInputValue(value);
+        }
     };
 
     const handlePrev = () => {
@@ -39,18 +43,15 @@ export default function FormSkinType({
     }
 
     const handleNext = () => {
-        if (inputValues.length > 0 && nextPage !== null) {
-            dispatch(setAnswer({ key: "skinTypes", value: inputValues }));
+        if (inputValue !== null && nextPage !== null) {
+            dispatch(setAnswer({ key: "sex", value: inputValue }));
             router.push(`/form/${nextPage}`);
-        }
+        }  
     };
 
     const options = [
-        {value: "乾燥肌", label: "乾燥肌"},
-        {value: "普通肌", label: "普通肌"},
-        {value: "脂性肌", label: "脂性肌"},
-        {value: "混合肌", label: "混合肌"},
-        {value: "敏感肌", label: "敏感肌"},
+        {value: "男性", label: "男性"},
+        {value: "女性", label: "女性"},
     ];
     
     return (
@@ -64,17 +65,15 @@ export default function FormSkinType({
                         prevPage === null
                     } onClick={handlePrev} />
                     <Button key="next" value="次へ" variant="fill" size="medium" disabled={
-                        inputValues.length === 0 || nextPage === null
+                        inputValue === null
                     } onClick={handleNext} />
                 </div>
                 <Progress text={title} value={progress} size="medium" />
-                <h1 className="text-center font-bold">肌質を教えてください（複数選択可）</h1>
+                <h1 className="text-center font-bold">性別を教えてください</h1>
                 <div className="flex grid grid-flow-col space-x-2 justify-stretch">
                     {
                         options.map((option) => (
-                            <Option key={option.value} value={option.value} label={option.label} selected={
-                                inputValues.includes(option.value)
-                            } onClick={handleValueChange} />
+                            <Option key={option.value} value={option.value} label={option.label} selected={option.value === inputValue} onClick={handleValueChange} />
                         ))
                     }
                 </div>
@@ -83,3 +82,5 @@ export default function FormSkinType({
         </main>         
     );
 };
+
+export default FormSex;

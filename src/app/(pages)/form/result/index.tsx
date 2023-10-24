@@ -2,9 +2,9 @@
 
 import { IFormResult } from "@/features/form/types";
 import Link from "next/link";
+import React from "react";
 
-export default function FormResult({
-}: IFormResult) {
+const FormResult: React.FC<IFormResult> = () => {
     
     return (
         <main className="flex min-h-screen flex-col items-center justify-start py-24 bg-white">
@@ -17,3 +17,5 @@ export default function FormResult({
         </main> 
     );
 };
+
+export default FormResult;

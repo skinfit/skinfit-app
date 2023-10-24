@@ -1,5 +1,5 @@
+import { NumberInput } from "@/components/Input";
 import { Meta, StoryObj } from '@storybook/react';
-import { NumberInput } from '../components/NumberInput';
 
 const meta = {
     title: 'NumberInput',

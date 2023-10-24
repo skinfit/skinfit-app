@@ -3,7 +3,7 @@ import { userRouter } from '@/features/user/api';
 import { mergeRouters } from "@/lib/trpc";
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 
-export const appRouter = mergeRouters(userRouter, symptomRouter);
+const appRouter = mergeRouters(userRouter, symptomRouter);
 
 export type AppRouter = typeof appRouter;
 
