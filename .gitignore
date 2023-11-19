@@ -4,3 +4,4 @@ frontend/prisma/migrations/migration_lock.toml
 frontend/prisma/migrations/20230919113003_init/migration.sql
 frontend/prisma/migrations/20230919113026_init/migration.sql
 frontend/prisma/migrations/20230925054417_init/migration.sql
+.env
